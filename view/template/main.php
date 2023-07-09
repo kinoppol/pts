@@ -1,292 +1,641 @@
-<?php
-$store=model('store');
-$stores=$store->get_store(array('id'=>$_SESSION['user']['store_id'],'status'=>'operated'));
-$data['title']=$stores[0]['name'];
-$data['store_name']=$stores[0]['name'];
-$data['sub_name']=$stores[0]['sub_name'];
 
-?>
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<!DOCTYPE html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
-    <link rel="apple-touch-icon" href="<?php print site_url('template/sufee-admin/',true); ?>apple-icon.png">
-    <link rel="shortcut icon" href="<?php print site_url('template/sufee-admin/',true); ?>favicon.ico">
+    <title><?php print $title; ?></title>
 
+    <meta name="description" content="" />
 
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/themify-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/selectFX/css/cs-skin-elastic.css">
-    
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/img/favicon/favicon.ico" />
 
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>assets/css/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="<?php print site_url('js/select2/dist/css/select2.css',true); ?>">
-    <link rel="stylesheet" href="<?php print site_url('',true); ?>js/sweetalert/dist/sweetalert.css">
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/fonts/boxicons.css" />
 
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/css/demo.css" />
 
-</head>
-<?php
-if(empty($_COOKIE['menu_display'])||$_COOKIE['menu_display']=='expand'){
-    $body_calss='';
-}else if($_COOKIE['menu_display']=='collapse'){
-    $body_calss=' open';
-}
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-?>
-<body class="<?php print $body_calss; ?>">
-    <!-- Left Panel -->
+    <!-- Page CSS -->
 
-    <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
+    <!-- Helpers -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/js/helpers.js"></script>
 
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="<?php print site_url('main'); ?>"><?php print $data['store_name']; ?></a>
-                <a class="navbar-brand hidden" href="./"><?php print $data['sub_name']; ?></a>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <svg
+                  width="25"
+                  viewBox="0 0 25 42"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs>
+                    <path
+                      d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
+                      id="path-1"
+                    ></path>
+                    <path
+                      d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
+                      id="path-3"
+                    ></path>
+                    <path
+                      d="M7.50063644,21.2294429 L12.3234468,23.3159332 C14.1688022,24.7579751 14.397098,26.4880487 13.008334,28.506154 C11.6195701,30.5242593 10.3099883,31.790241 9.07958868,32.3040991 C5.78142938,33.4346997 4.13234973,34 4.13234973,34 C4.13234973,34 2.75489982,33.0538207 2.37032616e-14,31.1614621 C-0.55822714,27.8186216 -0.55822714,26.0572515 -4.05231404e-15,25.8773518 C0.83734071,25.6075023 2.77988457,22.8248993 3.3049379,22.52991 C3.65497346,22.3332504 5.05353963,21.8997614 7.50063644,21.2294429 Z"
+                      id="path-4"
+                    ></path>
+                    <path
+                      d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
+                      id="path-5"
+                    ></path>
+                  </defs>
+                  <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
+                      <g id="Icon" transform="translate(27.000000, 15.000000)">
+                        <g id="Mask" transform="translate(0.000000, 8.000000)">
+                          <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                          </mask>
+                          <use fill="#696cff" xlink:href="#path-1"></use>
+                          <g id="Path-3" mask="url(#mask-2)">
+                            <use fill="#696cff" xlink:href="#path-3"></use>
+                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
+                          </g>
+                          <g id="Path-4" mask="url(#mask-2)">
+                            <use fill="#696cff" xlink:href="#path-4"></use>
+                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
+                          </g>
+                        </g>
+                        <g
+                          id="Triangle"
+                          transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
+                        >
+                          <use fill="#696cff" xlink:href="#path-5"></use>
+                          <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2"><?php print $systemName; ?></span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="index.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+
+            <!-- Layouts -->
+            <li class="menu-item active open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Layouts</div>
+              </a>
+
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="layouts-without-menu.html" class="menu-link">
+                    <div data-i18n="Without menu">Without menu</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-without-navbar.html" class="menu-link">
+                    <div data-i18n="Without navbar">Without navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item active">
+                  <a href="layouts-container.html" class="menu-link">
+                    <div data-i18n="Container">Container</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-fluid.html" class="menu-link">
+                    <div data-i18n="Fluid">Fluid</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-blank.html" class="menu-link">
+                    <div data-i18n="Blank">Blank</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Pages</span>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Account Settings</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="pages-account-settings-account.html" class="menu-link">
+                    <div data-i18n="Account">Account</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <div data-i18n="Notifications">Notifications</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-connections.html" class="menu-link">
+                    <div data-i18n="Connections">Connections</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                <div data-i18n="Authentications">Authentications</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                    <div data-i18n="Basic">Login</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                    <div data-i18n="Basic">Register</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                    <div data-i18n="Basic">Forgot Password</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="Misc">Misc</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="pages-misc-error.html" class="menu-link">
+                    <div data-i18n="Error">Error</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-misc-under-maintenance.html" class="menu-link">
+                    <div data-i18n="Under Maintenance">Under Maintenance</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Components -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Cards -->
+            <li class="menu-item">
+              <a href="cards-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Cards</div>
+              </a>
+            </li>
+            <!-- User interface -->
+            <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="User interface">User interface</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="ui-accordion.html" class="menu-link">
+                    <div data-i18n="Accordion">Accordion</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-alerts.html" class="menu-link">
+                    <div data-i18n="Alerts">Alerts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-badges.html" class="menu-link">
+                    <div data-i18n="Badges">Badges</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-buttons.html" class="menu-link">
+                    <div data-i18n="Buttons">Buttons</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-carousel.html" class="menu-link">
+                    <div data-i18n="Carousel">Carousel</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-collapse.html" class="menu-link">
+                    <div data-i18n="Collapse">Collapse</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-dropdowns.html" class="menu-link">
+                    <div data-i18n="Dropdowns">Dropdowns</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-footer.html" class="menu-link">
+                    <div data-i18n="Footer">Footer</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-list-groups.html" class="menu-link">
+                    <div data-i18n="List Groups">List groups</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-modals.html" class="menu-link">
+                    <div data-i18n="Modals">Modals</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-navbar.html" class="menu-link">
+                    <div data-i18n="Navbar">Navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-offcanvas.html" class="menu-link">
+                    <div data-i18n="Offcanvas">Offcanvas</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-pagination-breadcrumbs.html" class="menu-link">
+                    <div data-i18n="Pagination &amp; Breadcrumbs">Pagination &amp; Breadcrumbs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-progress.html" class="menu-link">
+                    <div data-i18n="Progress">Progress</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-spinners.html" class="menu-link">
+                    <div data-i18n="Spinners">Spinners</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-tabs-pills.html" class="menu-link">
+                    <div data-i18n="Tabs &amp; Pills">Tabs &amp; Pills</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-toasts.html" class="menu-link">
+                    <div data-i18n="Toasts">Toasts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-tooltips-popovers.html" class="menu-link">
+                    <div data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-typography.html" class="menu-link">
+                    <div data-i18n="Typography">Typography</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Extended components -->
+            <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="Extended UI">Extended UI</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                    <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-text-divider.html" class="menu-link">
+                    <div data-i18n="Text Divider">Text Divider</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <a href="icons-boxicons.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="Boxicons">Boxicons</div>
+              </a>
+            </li>
+
+            <!-- Forms & Tables -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
+            <!-- Forms -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Form Elements</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="forms-basic-inputs.html" class="menu-link">
+                    <div data-i18n="Basic Inputs">Basic Inputs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-input-groups.html" class="menu-link">
+                    <div data-i18n="Input groups">Input groups</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Form Layouts</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-layouts-vertical.html" class="menu-link">
+                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-horizontal.html" class="menu-link">
+                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Tables -->
+            <li class="menu-item">
+              <a href="tables-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">Tables</div>
+              </a>
+            </li>
+            <!-- Misc -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+            <li class="menu-item">
+              <a
+                href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                target="_blank"
+                class="menu-link"
+              >
+                <i class="menu-icon tf-icons bx bx-support"></i>
+                <div data-i18n="Support">Support</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a
+                href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                target="_blank"
+                class="menu-link"
+              >
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Documentation">Documentation</div>
+              </a>
+            </li>
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
             </div>
 
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-            <li>
-                        <a href="<?php print site_url('main/dashboard'); ?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search..."
+                    aria-label="Search..."
+                  />
+                </div>
+              </div>
+              <!-- /Search -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Place this tag where you want the button to render. -->
+                <li class="nav-item lh-1 me-3">
+                  <a
+                    class="github-button"
+                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    data-show-count="true"
+                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+                    >Star</a
+                  >
+                </li>
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
                     </li>
-                <?php
-                helper('sufee');
-                $menu=view('menu/budget');
-                $menu.=view('menu/parcel');
-                $menu.=view('menu/admin');
-                print $menu;
-                ?>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside><!-- /#left-panel -->
-
-    <!-- Left Panel -->
-
-    <!-- Right Panel -->
-
-    <div id="right-panel" class="right-panel">
-
-        <!-- Header-->
-        <header id="header" class="header">
-
-            <div class="header-menu">
-                <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left" onClick="toggleMenu()"><i class="fa fa-angle-double-left"></i></a>
-                    <div class="header-left">
-                        <!--
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-                        <div class="dropdown for-notification">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bell"></i>
-                                <span class="count bg-danger">5</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="notification">
-                                <p class="red">You have 3 Notification</p>
-                                <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p>Server #1 overloaded.</p>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <i class="fa fa-info"></i>
-                                <p>Server #2 overloaded.</p>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <i class="fa fa-warning"></i>
-                                <p>Server #3 overloaded.</p>
-                            </a>
-                            </div>
-                        </div>
-                        <div class="dropdown for-message">
-                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                id="message"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-email"></i>
-                                <span class="count bg-primary">9</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="message">
-                                <p class="red">You have 4 Mails</p>
-                                <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="<?php print site_url('template/sufee-admin/',true); ?>images/avatar/1.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Jonathan Smith</span>
-                                    <span class="time float-right">Just now</span>
-                                        <p>Hello, this is an example msg</p>
-                                </span>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="<?php print site_url('template/sufee-admin/',true); ?>images/avatar/2.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Jack Sanders</span>
-                                    <span class="time float-right">5 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                </span>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="<?php print site_url('template/sufee-admin/',true); ?>images/avatar/3.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Cheryl Wheeler</span>
-                                    <span class="time float-right">10 minutes ago</span>
-                                        <p>Hello, this is an example msg</p>
-                                </span>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-3" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="<?php print site_url('template/sufee-admin/',true); ?>images/avatar/4.jpg"></span>
-                                <span class="message media-body">
-                                    <span class="name float-left">Rachel Santos</span>
-                                    <span class="time float-right">15 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                </span>
-                            </a>
-                            </div>
-                        </div>
-                        
--->
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="user-area dropdown float-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="<?php print site_url('template/sufee-admin/',true); ?>images/admin.jpg" alt="User Avatar">
-                        </a>
-
-                        <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
-
-                            <a class="nav-link" href="<?php print site_url('user/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a>
-                        </div>
-                    </div>
-<!--
-                    <div class="language-select dropdown" id="language-select">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="language">
-                            <div class="dropdown-item">
-                                <span class="flag-icon flag-icon-fr"></span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-es"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-us"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-it"></i>
-                            </div>
-                        </div>
-                    </div>
--->
-                </div>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-basic.html">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
             </div>
+          </nav>
 
-        </header><!-- /header -->
-        <!-- Header-->
+          <!-- / Navbar -->
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>PPM</h1>
-                    </div>
-                </div>
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <?php
+              print $content;
+              ?>
             </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <?php
-                                $bc=explode('/',$_GET['p']);
-                                $bcw='';
-                                $total=count($bc);
-                                $i=0;
-                                foreach($bc as $sec){
-                                    $i++;
-                                    $class='';
-                                    if($total==$i){
-                                        $class=' class="active"';
-                                        $bcw.='<li class="active">'.$sec.'</li>';
-                                    }else{
-                                        $bcw.='<li><a href="#">'.$sec.'</a></li>';
-                                    }
-                                }
-                                print $bcw;
-                            ?>
-                        </ol>
-                    </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with ❤️ by
+                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
-            </div>
+                <!--
+                <div>
+                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                  <a
+                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Documentation</a
+                  >
+
+                  <a
+                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Support</a
+                  >
+                </div>-->
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
         </div>
+        <!-- / Layout page -->
+      </div>
 
-        <div class="content mt-3">
-        <?php
-                print $content;
-            ?>
-                                    </div><!-- .content -->
-                                </div><!-- /#right-panel -->
-                                <!-- Right Panel -->
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
 
+    
 
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/jquery/dist/jquery.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/popper.js/dist/umd/popper.min.js"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/popper/popper.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/js/bootstrap.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
 
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>assets/js/main.js"></script>
-                            
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-                            
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/jszip/dist/jszip.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/pdfmake/build/pdfmake.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/pdfmake/build/vfs_fonts.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-                            <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-                            <script src="<?php print site_url('',true); ?>js/select2/dist/js/select2.js"></script>
-                            <script src="<?php print site_url('',true); ?>js/sweetalert/dist/sweetalert.min.js"></script>
-</body>
-<script>
-    function toggleMenu(){
-        jQuery(document).ready(function(){
-            jQuery.ajax("<?php print site_url('setting/toggleMenu'); ?>");
-        });
-    }
-</script>
-    <?php
-        print systemFoot();
-    ?>
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
 </html>

@@ -8,7 +8,7 @@ class home{
         //     $store_data[$row['id']]=$row['name'];
         // }
         $content=view('home/index');
-        return view('template/authen',array('content'=>$content));
+        return view('template/main',array('content'=>$content,'title'=>"PTS",'systemName'=>"ระบบติดตาม"));
     }
 }
 ?>
