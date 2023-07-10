@@ -1,57 +1,93 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
 
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+<html
+  lang="en"
+  class="light-style customizer-hide"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
+    <title><?php print $title; ?></title>
 
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/themify-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>vendors/selectFX/css/cs-skin-elastic.css">
+    <meta name="description" content="" />
 
-    <link rel="stylesheet" href="<?php print site_url('template/sufee-admin/',true); ?>assets/css/style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/img/favicon/favicon.ico" />
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/fonts/boxicons.css" />
 
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/css/demo.css" />
 
-</head>
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-<body class="bg-dark">
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/css/pages/page-auth.css" />
+    <!-- Helpers -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/js/helpers.js"></script>
 
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/js/config.js"></script>
+  </head>
 
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <?php
-                print $content;
-            ?>
-        </div>
+  <body>
+    <!-- Content -->
+
+   <?php print $content; ?>
+
+    <!-- / Content -->
+<!-- 
+    <div class="buy-now">
+      <a
+        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
+        target="_blank"
+        class="btn btn-danger btn-buy-now"
+        >Upgrade to Pro</a
+      >
     </div>
+-->
 
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/popper/popper.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/js/bootstrap.js"></script>
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/jquery/dist/jquery.min.js"></script>
-    <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="<?php print site_url('template/sufee-admin/',true); ?>vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="<?php print site_url('template/sufee-admin/',true); ?>assets/js/main.js"></script>
-    
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
 
-</body>
-    <?php
-        print systemFoot();
-    ?>
+    <!-- Vendors JS -->
 
+    <!-- Main JS -->
+    <script src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
 </html>

@@ -19,12 +19,12 @@ error_reporting(E_ALL);
 
     $controller_guest_allowed=array('login',
                                     'register',
-                                    'home'
+                                    //'home'
                                  );
     
     if(empty($_SESSION['user'])&&!is_numeric(array_search($controller,$controller_guest_allowed))){
         print "Restrict access.";
-        print redirect(site_url('home'),2);
+        print redirect(site_url('login'),2);
         exit();
     }
 

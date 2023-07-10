@@ -1,14 +1,14 @@
 <?php
 class login{
     function index(){
-        $store=model('store');
-        $stores=$store->get_store(array('status'=>'operated'));
-        $store_data=array();
-        foreach($stores as $row){
-            $store_data[$row['id']]=$row['name'];
+        $systemModel=model('system');
+        $systemCfg=$systemModel->get_config();
+        $systemData=array();
+        foreach($systemCfg as $row){
+            $systemData[$row['id']]=$row['value'];
         }
-        $content=view('login/form',array('action_url'=>site_url('login/check'),'store'=>$store_data));
-        return view('template/authen',array('content'=>$content));
+        $content=view('login/form',array('action_url'=>site_url('login/check'),'system'=>$systemData));
+        return view('template/authen',array('content'=>$content,'system'=>$systemData,'title'=>'ลงชื่อเข้าใช้'));
     }
 
     function check(){
