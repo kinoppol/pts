@@ -6,7 +6,7 @@ class user{
         $this->db=$db_ref;
     }
     function get_user($data=array()){
-        $sql='select * from user where '.arr2and($data);
+        $sql='select * from user_data where '.arr2and($data);
         //print $sql;
         $result=$this->db->query($sql);
 

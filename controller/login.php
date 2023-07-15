@@ -12,13 +12,13 @@ class login{
     }
 
     function check(){
-        $username=trim($_POST['username']);
+        $username=trim($_POST['email-username']);
         $password=trim($_POST['password']);
-        $store_id=trim($_POST['store_id']);
-        if(!empty($_POST['remember'])){
+        //$store_id=trim($_POST['store_id']);
+        if(!empty($_POST['remember-me'])){
             $llogin=array(
-                'store_id'=>$store_id,
-                'username'=>$_POST['username'],
+                //'store_id'=>$store_id,
+                'username'=>$username,
             );
             $remember_data=json_encode($llogin);
             setcookie('last_login', $remember_data, time() + (86400 * 365), "/");
@@ -29,9 +29,9 @@ class login{
         }else{
             $user=model('user');
             $data=array(
-                'store_id'=>$store_id,
+                //'store_id'=>$store_id,
                 'username'=>$username,
-                'password'=>$password,
+                'password'=>md5($password),
             );
             $u=$user->get_user($data);
             if(count($u)<1){

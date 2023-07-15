@@ -11,8 +11,11 @@ class user{
     }
 
     function view(){
-
         $data['content']='รายชื่อผู้ใช้';
+        helper('sneat/menu');
+        $menu=view('menu/admin').view('menu/budget');
+        $data['menu']=$menu;
+        $data['title']='จัดการผู้ใช้';
         return view('template/main',$data);
     }
 }

@@ -10,7 +10,7 @@ error_reporting(E_ALL);
     $p=$_GET['p'];
     $seg=explode('/',$p);
     $controller=$seg[0];
-    if(!empty($seg[1]))$f=$seg[1];
+    if(!empty($seg[1]))$function=$seg[1];
     }
 
     if(empty($controller)){
@@ -34,10 +34,10 @@ error_reporting(E_ALL);
 
     $page=new $controller();
 
-    if(empty($f)){
+    if(empty($function)){
         print $page->index();
     }else{
-        print $page->$f();
+        print $page->$function();
     }
 
 ?>

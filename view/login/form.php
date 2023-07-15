@@ -67,9 +67,17 @@
               </div>
               <!-- /Logo -->
               <h4 class="mb-2">ยินดีต้อนรับเข้าสู่ <?php print $system['systemName']; ?>👋</h4>
-              <p class="mb-4">โปรดยืนยันตัวตนเพื่อเข้าใช้งาน</p>
+              
+              <?php
+                if(empty($_SESSION['err_message'])){
+                  print '<p class="mb-4">โปรดยืนยันตัวตนเพื่อเข้าใช้งาน</p>';
+                }else{
+                  print '<p class="mb-4" style="color:red">'.$_SESSION['err_message'].'</p>';
+                  unset($_SESSION['err_message']);
+                }
+              ?>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="<?php print $action_url; ?>" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">อีเมลหรือชื่อผู้ใช้</label>
                   <input

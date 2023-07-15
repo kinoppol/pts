@@ -1,54 +1,78 @@
 <?php
 
 function gen_submenu($arr=array(),$expanded=false){ 
-    global $c;
-    global $f;   
+    global $controller;
+    global $function;   
     $ret='';
-    $exp='false';
+    $sexp='';
+    $exp='';
     $show='';
     $sactive='';
     if($expanded){
-        $exp='true';
+        $exp=' open';
         $show=' show';
     }
-    $current_function=$c.'/'.$f;
-    if(mb_substr($arr['url'],0,mb_strlen(site_url($current_function)))==site_url($current_function)){
+    $current_function=$controller.'/'.$function;
+    if(mb_substr($current_function,(mb_strlen($current_function)-1),1)=='/'){
+        $current_function=mb_substr($current_function,0,mb_strlen($current_function)-1);
+    }
+    // print $controller;
+    // print 'U-'.$arr['url'];
+    // print "--------<br>";
+    if(mb_substr($arr['url'],0,mb_strlen(site_url($controller)))==site_url($controller)){
+        // print "EQU";
         $sactive=' active';
-        $exp='true';
+        $exp=' open';
     }
     if(is_array($arr['item'])&&count($arr['item'])>0){
-        $ret.='<a href="'.$arr['url'].'" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="'.$exp.'"> <i class="menu-icon '.$arr['bullet'].'"></i>'.$arr['label'].'</a>
-                    <ul class="sub-menu children dropdown-menu'.$show.$sactive.'">';
+        $ret.='
+        <li class="menu-item'.$sactive.$exp.'">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon '.$arr['bullet'].'"></i>
+          <div data-i18n="'.$arr['label'].'">'.$arr['label'].'</div>
+            </a>
+            <ul class="menu-sub">';
             foreach($arr['item'] as $row){
                 $ssactive='';
+                $sexp='';
+                    //print $current_function;
+                    //print 'U-'.$row['url'].'<br>';
                 if(mb_substr($row['url'],0,mb_strlen(site_url($current_function)))==site_url($current_function)){
                     $ssactive=' active';
+                    $sexp=' open';
                 }
                 $ret.='
-                <li class="'.$ssactive.'">
-                    <i class="menu-icon '.$row['bullet'].$sactive.'"></i><a href="'.$row['url'].'">'.$row['label'].'</a>
+                <li class="menu-item'.$ssactive.'">
+                <a href="'.$row['url'].'" class="menu-link">
+                    <div data-i18n="'.$row['label'].'">'.$row['label'].'</div>
+                  </a>
                 </li>';
             }
-        $ret.='</ul>';
+        $ret.='</ul></li>';
     }else{
-        $ret.='<li class="'.$sactive.'">
-        <a href="'.$arr['url'].'"> <i class="menu-icon '.$arr['bullet'].'"></i>'.$arr['label'].'</a>
+        $ret.='<li class="menu-item'.$sactive.'">        
+        <a href="'.$arr['url'].'" class="menu-link">
+        <i class="menu-icon '.$arr['bullet'].'"></i>        
+        <div data-i18n="'.$arr['label'].'">'.$arr['label'].'</div></a>
         </li>';
     }
     return $ret;
 }
 function gen_menu($arr=array()){
-    global $c;
+    global $controller;
     $ret='';
     foreach($arr as $k=>$v){
-        $ret='<h3 class="menu-title">'.$k.'</h3>';
+        $ret.='<li class="menu-header small text-uppercase">
+        <span class="menu-header-text">'.$k.'</span></li>';
         foreach($v as $key=>$row){
             $show='';
-            if($key==$c) $show=' show';
-            $ret.='<li class="menu-item-has-children dropdown'.$show.'">';
+            if($key==$controller) $show=' show';
+            $ret.='         ';
             $ret.=gen_submenu($row,$show);
-            $ret.='</li>';
+            $ret.='';
         }
+        $ret.='</li>';
     }
+    $ret.='';
     return $ret;
 }
