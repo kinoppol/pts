@@ -1,16 +1,11 @@
 <?php
 class main{
     function index(){
-        $systemModel=model('system');
-        $systemCfg=$systemModel->get_config();
-        $systemData=array();
-        foreach($systemCfg as $row){
-            $systemData[$row['id']]=$row['value'];
-        }
+        
         $content='Hello-PTS';
         helper('sneat/menu');
         $menu=view('menu/budget');
-        return view('template/main',array('content'=>$content,'system'=>$systemData,'title'=>'หน้าหลัก','menu'=>$menu));
+        return view('template/main',array('content'=>$content,'title'=>'หน้าหลัก','menu'=>$menu));
     }
     function dashboard(){
         $store=model('store');

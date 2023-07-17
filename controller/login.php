@@ -1,14 +1,9 @@
 <?php
 class login{
     function index(){
-        $systemModel=model('system');
-        $systemCfg=$systemModel->get_config();
-        $systemData=array();
-        foreach($systemCfg as $row){
-            $systemData[$row['id']]=$row['value'];
-        }
-        $content=view('login/form',array('action_url'=>site_url('login/check'),'system'=>$systemData));
-        return view('template/authen',array('content'=>$content,'system'=>$systemData,'title'=>'ลงชื่อเข้าใช้'));
+    
+        $content=view('login/form',array('action_url'=>site_url('login/check')));
+        return view('template/authen',array('content'=>$content,'title'=>'ลงชื่อเข้าใช้'));
     }
 
     function check(){

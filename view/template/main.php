@@ -1,5 +1,7 @@
-
-<!DOCTYPE html>
+<?php
+$systemModel=model('system');
+$system=$systemModel->get_config();
+?><!DOCTYPE html>
 
 <html
   lang="en"

@@ -18,7 +18,11 @@ class system{
             while($row=$result->fetch_assoc()){
                 $res[]=$row;
             }
-            return $res;
+            $systemData=array();
+            foreach($res as $row){
+                $systemData[$row['id']]=$row['value'];
+            }
+            return $systemData;
         
     }
 }
