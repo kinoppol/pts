@@ -1,12 +1,8 @@
 <?php
 class home{
     function index(){
-        
-      
         $content='Hello-PTS';
-        helper('sneat/menu');
-        $menu=view('menu/admin');//.view('menu/budget');
-        return view('template/main',array('content'=>$content,'title'=>'หน้าหลัก','menu'=>$menu));
+        return view('_template/main',array('content'=>$content,'title'=>'หน้าหลัก'));
     }
     function dashboard(){
         $store=model('store');
@@ -16,7 +12,7 @@ class home{
         $data['sub_name']=$stores[0]['sub_name'];
 
         $data['content']='Hello';
-        return view('template/main',$data);
+        return view('_template/main',$data);
     }
 }
 ?>

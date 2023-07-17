@@ -5,15 +5,14 @@ class config{
        
         $content='ตั้งค่า-PTS';
         helper('sneat/menu');
-        $menu=view('menu/admin').view('menu/budget');
-        return view('template/main',array('content'=>$content,'title'=>'ตั้งค่า','menu'=>$menu));
+        return view('_template/main',array('content'=>$content,'title'=>'ตั้งค่า'));
     }
     function store(){
         $data['content']='ตั้งค่าร้าน';
-        return view('template/main',$data);
+        return view('_template/main',$data);
     }
     function time(){
         $data['content']='ตั้งค่าเวลาการทำงาน.';
-        return view('template/main',$data);
+        return view('_template/main',$data);
     }
 }

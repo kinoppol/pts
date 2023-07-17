@@ -1,4 +1,14 @@
 <?php
+function redirect_on_error(){
+    if(!defined('EVERYTHING_WENT_OK')){
+        ob_end_clean();
+        //header('Location: error.php');
+        print view('_error/error404');
+    }
+}
+
+register_shutdown_function('redirect_on_error');
+
 ob_start();
 session_start();
 ini_set('display_errors', 1);
@@ -39,5 +49,5 @@ error_reporting(E_ALL);
     }else{
         print $page->$function();
     }
-
+    define('EVERYTHING_WENT_OK', TRUE);
 ?>

@@ -1,6 +1,7 @@
 <?php
 $systemModel=model('system');
 $system=$systemModel->get_config();
+$menu=view('_menu/main_menu');
 ?><!DOCTYPE html>
 
 <html
@@ -62,7 +63,7 @@ $system=$systemModel->get_config();
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="<?php print site_url(); ?>#" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
