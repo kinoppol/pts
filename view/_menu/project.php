@@ -3,7 +3,7 @@
 $menu['โครงการ']=array(
     'project'=>array(
         'label'=>'จัดการโครงการ',
-        'bullet'=>'tf-icons bx bx-lock-open-alt',
+        'bullet'=>'tf-icons bx bx-customize',
         'url'=>site_url(),
         'item'=>array(
             'list'=>array(
@@ -12,6 +12,7 @@ $menu['โครงการ']=array(
             ),
             'tracking'=>array(
                 'label'=>'ติดตามโครงการ',
+                'bullet'=>'tf-icons bx bx-line-chart',
                 'url'=>site_url('project/tracking'),
             )
         ),
@@ -19,7 +20,7 @@ $menu['โครงการ']=array(
     'summary'=>array(
         'label'=>'สรุปรายงาน',
         'url'=>site_url('summary/index'),
-        'bullet'=>'tf-icons bx bx-lock-open-alt',
+        'bullet'=>'tf-icons bx bx-notepad',
         'item'=>array(
             
         ),

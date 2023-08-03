@@ -3,7 +3,7 @@
 $menu['งบประมาณและเงินรายได้']=array(
     'money'=>array(
         'label'=>'งบ',
-        'bullet'=>'tf-icons bx bx-lock-open-alt',
+        'bullet'=>'tf-icons bx bx-money',
         'url'=>site_url('money'),
         'item'=>array(
             'bud_persernal'=>array(
@@ -30,7 +30,7 @@ $menu['งบประมาณและเงินรายได้']=array(
     ),
     'budget'=>array(
         'label'=>'เงินรายได้สถานศึกษา',
-        'bullet'=>'tf-icons bx bx-lock-open-alt',
+        'bullet'=>'tf-icons bx bx-money',
         'url'=>site_url('budget/shelf'),
         'item'=>array(
             'inc_support'=>array(

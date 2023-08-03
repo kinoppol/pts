@@ -3,14 +3,14 @@
 $menu['จัดการระบบ']=array(
     'user'=>array(
         'label'=>'จัดการผู้ใช้',
-        'bullet'=>'tf-icons bx bx-lock-open-alt',
+        'bullet'=>'tf-icons bx bx-user',
         'url'=>site_url('user/view'),
         'item'=>array(),
     ),
     'config'=>array(
         'label'=>'คั้งค่าการทำงาน',
         'url'=>site_url('config'),
-        'bullet'=>'tf-icons bx bx-lock-open-alt',
+        'bullet'=>'tf-icons bx bx-cog',
         'item'=>array(/*
             'store'=>array(
                 'label'=>'ข้อมูลร้าน',
