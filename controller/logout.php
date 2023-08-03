@@ -1,8 +1,8 @@
 <?php
 class logout{
     function index(){
-        unset($_SESSION['user']);
+        if(isset($_SESSION['user'])){unset($_SESSION['user']);}
         print "โปรดรอสักครู่..";
-        return redirect(site_url(''),2);
+        return redirect(site_url('/'),2);
     }
 }

@@ -3,7 +3,7 @@ class login{
     function index(){
     
         $content=view('login/form',array('action_url'=>site_url('login/check')));
-        return view('template/authen',array('content'=>$content,'title'=>'ลงชื่อเข้าใช้'));
+        return view('_template/authen',array('content'=>$content,'title'=>'ลงชื่อเข้าใช้'));
     }
 
     function check(){

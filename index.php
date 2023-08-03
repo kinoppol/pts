@@ -1,4 +1,9 @@
 <?php
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+require_once('function.php');
+
 function redirect_on_error(){
     if(!defined('EVERYTHING_WENT_OK')){
         ob_end_clean();
@@ -7,15 +12,14 @@ function redirect_on_error(){
     }
 }
 
+
 register_shutdown_function('redirect_on_error');
 
 ob_start();
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
     require_once('conf/db.php');
-    require_once('function.php');
+    
     if(!empty($_GET['p'])){
     $p=$_GET['p'];
     $seg=explode('/',$p);
@@ -24,7 +28,7 @@ error_reporting(E_ALL);
     }
 
     if(empty($controller)){
-        $controller='home';
+        $controller='login';
     }
 
     $controller_guest_allowed=array('login',

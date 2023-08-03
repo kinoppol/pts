@@ -16,7 +16,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Error - Page not found</title>
+    <title>Error - Database</title>
 
     <meta name="description" content="" />
 
@@ -59,12 +59,12 @@
     <!-- Error -->
     <div class="container-xxl container-p-y">
       <div class="misc-wrapper">
-        <h2 class="mb-2 mx-2">ไม่พบหน้าที่คุณต้องการ :(</h2>
-        <p class="mb-4 mx-2">อุ๊ป! 😖 หน้าที่คุณต้องการอาจถูกย้าย หรือถูกลบไปแล้ว</p>
+        <h2 class="mb-2 mx-2">ไม่สามารถเชื่อมต่อฐานข้อมูลได้ :(</h2>
+        <p class="mb-4 mx-2">อุ๊ป! 😖 ระบบไม่สามารถเชื่อมต่อฐานข้อมูลได้</p>
         <a href="./" class="btn btn-primary">กลับหน้าหลัก</a>
         <div class="mt-3">
-          <img
-            src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/img/illustrations/page-misc-error-light.png"
+        <img
+            src="<?php print site_url('template/Sneat/sneat-bootstrap-html-admin-template/',true); ?>assets/img/illustrations/girl-doing-yoga-light.png"
             alt="page-misc-error-light"
             width="500"
             class="img-fluid"
